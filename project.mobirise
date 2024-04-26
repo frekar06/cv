@@ -48,7 +48,7 @@
       }
     ],
     "imageResize": true,
-    "uniqCompNum": 44,
+    "uniqCompNum": 45,
     "versionPublish": "5.9.17",
     "screenshot": "screenshot.png"
   },
@@ -1729,6 +1729,128 @@
           "_global": false,
           "_once": false,
           "_params": {}
+        },
+        {
+          "alias": false,
+          "_styles": {
+            "& when not (@fullScreen)": {
+              "padding-top": "(@paddingTop * 15px)",
+              "padding-bottom": "(@paddingBottom * 15px)",
+              "@media (max-width: 767px)": {
+                "padding-top": "(@paddingTop * 5px)",
+                "padding-bottom": "(@paddingBottom * 5px)"
+              }
+            },
+            "& when (@bg-type = 'image')": {
+              "background-image": "url(@bg-value)"
+            },
+            "& when (@bg-type = 'color')": {
+              "background-color": "@bg-value"
+            },
+            "img": {
+              "width": "100%",
+              "border-radius": "30px",
+              "transform": "translate(1%, 5%)"
+            },
+            ".right-wrapper": {
+              "padding-left": "5rem"
+            },
+            ".btn": {
+              "padding": "0.7rem 2.4rem",
+              "position": "relative"
+            },
+            ".container-fluid": {
+              "max-width": "1200px",
+              "padding": "0 1.4rem"
+            },
+            ".mbr-text": {
+              "margin-top": "1.5rem",
+              "margin-bottom": "2.5rem"
+            },
+            ".imageContainer": {
+              "display": "inline-block",
+              "position": "relative",
+              "z-index": "0",
+              "&:before": {
+                "content": "''",
+                "position": "absolute",
+                "top": "0",
+                "left": "0",
+                "width": "96%",
+                "height": "100%",
+                "border": "2px dashed @warningColor",
+                "border-radius": "30px",
+                "z-index": "-1"
+              }
+            },
+            ".btn:hover .inner-dashed-border": {
+              "animation-play-state": "running"
+            },
+            "@keyframes dashed_border_running": {
+              "100%": {
+                "stroke-dashoffset": "-1000"
+              }
+            },
+            ".svg1": {
+              "position": "absolute",
+              "padding": "2px",
+              "rect": {
+                "width": "~\"calc(100% - 4px)\"",
+                "height": "~\"calc(100% - 4px)\""
+              }
+            },
+            "@media (min-width: 767px) and (max-width: 992px)": {
+              ".imageContainer": {
+                "margin-bottom": "4.2rem"
+              },
+              ".right-wrapper": {
+                "padding-left": "1.2rem"
+              }
+            },
+            "@media (max-width: 767px)": {
+              ".imageContainer": {
+                "margin-left": "1rem",
+                "margin-bottom": "3rem"
+              },
+              ".container-fluid": {
+                "padding": "0 1rem"
+              },
+              ".right-wrapper": {
+                "text-align": "center",
+                "padding-left": "15px"
+              }
+            },
+            ".mbr-fallback-image.disabled": {
+              "display": "none"
+            },
+            ".mbr-fallback-image": {
+              "display": "block",
+              "background-size": "cover",
+              "background-position": "center center",
+              "width": "100%",
+              "height": "100%",
+              "position": "absolute",
+              "top": "0",
+              "& when (@bg-type = 'video')": {
+                "background-image": "url(@fallBackImage)"
+              }
+            },
+            ".mbr-section-title": {
+              "color": "#ffffff"
+            },
+            ".mbr-text, .mbr-section-btn": {
+              "color": "#ffffff"
+            }
+          },
+          "_name": "header2",
+          "_sourceTheme": "kidsm4",
+          "_customHTML": "<section data-bs-version=\"5.1\" group=\"Header\" class=\"header2 kidsm4_header2\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-fullscreen': fullScreen, 'mbr-parallax-background': bg.parallax}\">\n\n\t<mbr-parameters>\n\t\t\n\t\t<header>Size</header>\n\t\t<input type=\"checkbox\" title=\"Full Screen\" name=\"fullScreen\">\n\t\t<input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"15\" step=\"1\" value=\"5\" condition=\"fullScreen == false\">\n\t\t<input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"15\" step=\"1\" value=\"5\" condition=\"fullScreen == false\">\n\t\t<input type=\"checkbox\" title=\"Left/Right Content\" name=\"reverse\">\n\t\t<header>Show/Hide</header>\n\t\t<input type=\"checkbox\" title=\"Arrow\" name=\"showArrow\">\n\t\t<input type=\"checkbox\" title=\"Title\" name=\"showTitle\" checked>\n\t\t<input type=\"checkbox\" title=\"Subtitle\" name=\"showSubTitle\">\n\t\t<input type=\"checkbox\" title=\"Text\" name=\"showText\" checked>\n\t\t<input type=\"checkbox\" title=\"Buttons\" name=\"showButtons\" checked>\n\t\t<header>Background</header>\n\t\t<fieldset type=\"background\" name=\"bg\" parallax>\n\t\t\t<input type=\"image\" title=\"Image\" value=\"@ADDONS_PATH@/kidsm4/components/_images/children.jpg\" parallax>\n\t\t\t<input type=\"color\" title=\"Color\" value=\"#000000\" selected>\n\t\t\t<input type=\"video\" title=\"Video\" value=\"https://vimeo.com/201169087\">\n\t\t</fieldset>\n        <header condition=\"bg.type === 'video'\">Fallback Image</header>\n        <input type=\"image\" title=\"Fallback Image\" value=\"@ADDONS_PATH@/kidsm4/components/_images/children.jpg\" name=\"fallBackImage\" condition=\"bg.type === 'video'\">\n\n\t\t<input type=\"checkbox\" title=\"Overlay\" name=\"overlay\" condition=\"bg.type !== 'color'\" checked>\n\t\t<input type=\"color\" title=\"Overlay Color\" name=\"overlayColor\" value=\"#ffffff\" condition=\"overlay && bg.type !== 'color'\">\n\t\t<input type=\"range\" inline title=\"Opacity\" name=\"overlayOpacity\" min=\"0\" max=\"1\" step=\"0.1\" value=\"0.7\" condition=\"overlay && bg.type !== 'color'\">\n\t\t\n\t</mbr-parameters>\n    <div class=\"mbr-fallback-image disabled\" mbr-if=\"bg.type == 'video'\"></div>\n\n\n\t<div class=\"mbr-overlay\" mbr-if=\"overlay && bg.type !== 'color'\" opacity=\"{{overlayOpacity}}\" bg-color=\"{{overlayColor}}\"></div>\n\n\t<div class=\"container-fluid\">\n\t\t<div class=\"row\" mbr-class=\"{'flex-row-reverse' : reverse}\">\n\t\t\t<div class=\"col-lg-6 col-md-12 imageContainer\">\n\t\t\t\t<img src=\"@PROJECT_PATH@/assets/images/projekt-1-500x500.png\" alt=\"Mobirise\">\n\t\t\t</div>\n\n\t\t\t<div class=\"col-md-12 col-lg-6 m-auto align-left right-wrapper\">\n\t\t\t\t<h1 class=\"mbr-section-title mbr-fonts-style\" mbr-theme-style=\"display-5\" mbr-if=\"showTitle\" data-app-selector=\".mbr-section-title\">\n\t\t\t\t\t<span class=\"line-bg-warning\"><b>Projekt och projektledning</b></span></h1>\n\t\t\t\t<h3 class=\"mbr-section-subtitle mbr-fonts-style\" mbr-theme-style=\"display-2\" mbr-if=\"showSubTitle\" data-app-selector=\".mbr-section-subtitle\"></h3>\n\t\t\t\t<p class=\"mbr-text mbr-light mbr-fonts-style\" mbr-theme-style=\"display-7\" mbr-if=\"showText\" data-app-selector=\".mbr-text, .mbr-section-btn\">Under stora delar av mitt yrkesliv har jag arbetat i projekt. Projektformen passar mig eftersom den ger möjligheten till både enskilt arbete och arbete tillsammans med andra. Som framgick av kurslistan har jag läst 15 högskolepoäng inom projektledning.&nbsp;<br><br>Nedan kan du ta del av den projektstudie som jag genomförde i samband med att jag läste mina 15 högskolepoäng projektledning.&nbsp; Studien är en litteraturstudie som tar sin utgångspunkt i projektet Värdekompassen (pedagogiskt spel om normbrytande beteenden och värderingar). Litteraturen som användes var den kurslitteratur som vi hade tillgång till på kursen.&nbsp;<br><br>I projektstudien tar jag inte bara upp Värdekompassen utifrån synvinkeln projektledning utan diskuterar också vilka möjligheter och utmaningar som finns med att arbeta med informations- och kommunikationsteknik i samband med projekt med utgångspunkt i Värdekompassen och litteraturen.&nbsp;Klicka på knappen nedan för att komma till projektstudien.</p>\n\t\t\t\t<div mbr-buttons mbr-theme-style=\"display-7\" class=\"button-svg mbr-section-btn\" mbr-if=\"showButtons\" data-toolbar=\"-mbrBtnMove\"><a class=\"btn btn-primary\" href=\"https://drive.google.com/file/d/1LC1eTBihqjkeyiiVLNxPRDZbJJip_Lts/view?usp=sharing\" data-app-placeholder=\"Type Text\" target=\"_blank\">Klicka här</a></div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div mbr-if=\"showArrow\" class=\"mbr-arrow hidden-sm-down\" aria-hidden=\"true\">\n\t\t<a href=\"#next\">\n\t\t\t<i class=\"mbri-down mbr-iconfont\"></i>\n\t\t</a>\n\t</div>\n</section>",
+          "_cid": "ub3CEoypst",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {},
+          "_anchor": "header2-18"
         }
       ]
     }
