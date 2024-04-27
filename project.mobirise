@@ -38,7 +38,7 @@
       ]
     },
     "path": "@PROJECT_PATH@",
-    "name": "Site 2024-04-25 19:56",
+    "name": "CV",
     "versionFirst": "5.9.17",
     "siteFonts": [
       {
@@ -51,7 +51,17 @@
     "uniqCompNum": 47,
     "versionPublish": "5.9.17",
     "screenshot": "screenshot.png",
-    "publishChangesOnly": true
+    "publishChangesOnly": true,
+    "chatbutton": {},
+    "favicon": false,
+    "mbrsiteDomain": "8kcu0ikq4n",
+    "usedWebp": false,
+    "robotsSwitcher": false,
+    "sitemapSwitcher": false,
+    "sitemapSwitcherAuto": false,
+    "siteUrl": false,
+    "cookiesAlert": false,
+    "gdpr": false
   },
   "pages": {
     "index.html": {
